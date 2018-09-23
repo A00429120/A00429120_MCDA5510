@@ -44,8 +44,8 @@ public class DirWalker2 {
 			pw = new PrintWriter(new FileOutputStream(new File(outputFile), true));
 			
 			int err = 0;
-			String CSVDir = filePath.substring(0,filePath.lastIndexOf("\\"));
-			String fileName = filePath.substring(filePath.lastIndexOf("\\")+1);
+			String CSVDir = filePath.substring(0,filePath.lastIndexOf(pathSeperator));
+			String fileName = filePath.substring(filePath.lastIndexOf(pathSeperator)+1);
 			fileName = fileName.substring(0, fileName.indexOf("."));
 
 			Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + CSVDir);
@@ -123,13 +123,13 @@ public class DirWalker2 {
 			if(file.isDirectory()) walk(fileName, outputFile);
 			else {
 				//fetching the dates using the folder structure
-				 String folder = fileName.substring(0,fileName.lastIndexOf("\\"));
-				String day = folder.substring(folder.lastIndexOf("\\")+1);
+				 String folder = fileName.substring(0,fileName.lastIndexOf(pathSeperator));
+				String day = folder.substring(folder.lastIndexOf(pathSeperator)+1);
 				//System.out.println(day);
-				String month = folder.substring(0,folder.lastIndexOf("\\"));
-				month = month.substring(month.lastIndexOf("\\")+1);
-				String year = folder.substring(0,folder.lastIndexOf("\\"+month+"\\"));
-				year = year.substring(year.lastIndexOf("\\")+1);
+				String month = folder.substring(0,folder.lastIndexOf(pathSeperator));
+				month = month.substring(month.lastIndexOf(pathSeperator)+1);
+				String year = folder.substring(0,folder.lastIndexOf(pathSeperator+month+pathSeperator));
+				year = year.substring(year.lastIndexOf(pathSeperator)+1);
 				month = month.length() == 2 ? month:"0"+month ;
 				day = day.length() == 2 ? day:"0"+day ;
 				String date = year+"\\"+month+"\\"+day; 

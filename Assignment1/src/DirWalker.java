@@ -119,7 +119,7 @@ public class DirWalker {
 				year = year.substring(year.lastIndexOf(pathSeperator)+1);
 				month = month.length() == 2 ? month:"0"+month ;
 				day = day.length() == 2 ? day:"0"+day ;
-				String date = year+pathSeperator+month+pathSeperator+day; 
+				String date = year+"\\"+month+"\\"+day; 
 				fileParser(file.getAbsolutePath(), outputFile, date); //to be replace with the parse code
 			}
 		}
