@@ -12,7 +12,7 @@ public class SimpleLogging {
 
 	private static final Logger logging = Logger.getLogger(SimpleLogging.class.getName());
 	static final String basePath = System.getProperty("user.dir");
-	static final String outputDir = basePath+"/Output";
+	static final String outputDir = basePath+"/../Output";
 	File logFile = new File(outputDir+"/assignment1.log");
 	
 	

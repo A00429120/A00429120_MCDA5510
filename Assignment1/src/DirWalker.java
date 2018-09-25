@@ -142,7 +142,7 @@ public class DirWalker {
 		LocalDateTime time = LocalDateTime.now();
 		String now = dtf.format(time);
 		int validRecords, invalidRecords;
-		String outputDir = basePath+"/Output";
+		String outputDir = basePath+"/../Output";
 		File output = new File(outputDir);
 		File outputFile = new File(outputDir+"/output"+now+".csv");
 		DirWalker obj = new DirWalker();
@@ -165,7 +165,7 @@ public class DirWalker {
 		
 		
 		
-		obj.walk(basePath+"/Sample Data",outputFile.getAbsolutePath());
+		obj.walk(basePath+"/../Sample Data",outputFile.getAbsolutePath());
 		final long endTime = System.currentTimeMillis();
 		Long exeTime = endTime-startTime;
 		validRecords = obj.getValidRecords();
