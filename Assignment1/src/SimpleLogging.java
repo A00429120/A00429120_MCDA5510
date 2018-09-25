@@ -13,7 +13,7 @@ import java.util.logging.SimpleFormatter;
 public class SimpleLogging {
 
 	static final String basePath = System.getProperty("user.dir");
-	static final String outputDir = basePath+"/Output";
+	static final String outputDir = basePath+"/../log";
 	FileHandler fh; 
 
 	

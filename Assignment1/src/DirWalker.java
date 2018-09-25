@@ -165,7 +165,7 @@ public class DirWalker {
 
 		
 		
-		obj.walk(basePath+"/Sample Data",outputFile.getAbsolutePath());
+		obj.walk(basePath+"/../Sample Data",outputFile.getAbsolutePath());
 		final long endTime = System.currentTimeMillis();
 		Long exeTime = endTime-startTime;
 		validRecords = obj.getValidRecords();
