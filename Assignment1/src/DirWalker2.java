@@ -25,7 +25,7 @@ public class DirWalker2 {
 	private static int incompleteRecords = 0;
 	SimpleLogging log = new SimpleLogging();
 	static String pathSeperator = System.getProperty("os.name").startsWith("Windows") ? "\\" : "/";
-	
+
 	/*Input : (path of the file to be parsed,
 	 *  output file to which its results are to written, 
 	 *  date from the dir structure)*/
@@ -36,14 +36,13 @@ public class DirWalker2 {
 			log.logIt(Level.INFO,"Not a .csv file hence skipping it !!");
 			return;
 		}
-		
+
 		try {
 			// Load the driver.
 			Class.forName("org.relique.jdbc.csv.CsvDriver");
-			
+
 			pw = new PrintWriter(new FileOutputStream(new File(outputFile), true));
-			
-			int err = 0;
+
 			String CSVDir = filePath.substring(0,filePath.lastIndexOf(pathSeperator));
 			String fileName = filePath.substring(filePath.lastIndexOf(pathSeperator)+1);
 			fileName = fileName.substring(0, fileName.indexOf("."));
@@ -59,37 +58,37 @@ public class DirWalker2 {
 
 			results = stmt.executeQuery("SELECT * FROM "+fileName);
 
-			
+
 			while(results.next()) {
 				String firstName = results.getString("First Name");
-			    String lastName = results.getString("Last Name");
-			    /*Expensive operations that increase the process time 
-			     * Checking to see if there is any comma in between my data which was previously enclosed in ""
-			     */
-			    Integer streetNo = results.getInt("Street Number");
-			    String streetName = results.getString("Street").indexOf(",") >= 0 ? "\""+results.getString("Street")+"\"" : results.getString("Street");
-			    String city = results.getString("City").indexOf(",") >= 0 ? "\""+results.getString("City")+"\"" : results.getString("City");
-			    String province = results.getString("Province").indexOf(",") >= 0 ? "\""+results.getString("Province")+"\"" : results.getString("Province");
-			    String pin = results.getString("Postal Code");
-			    String country = results.getString("Country");
-			    Integer phNo = results.getInt("Phone Number");
-			    String email = results.getString("email Address");
-			    
-			    //this region to be commented out in case this is just to check if the csv is complete or not  
-			    if(firstName.isEmpty() || lastName.isEmpty() || streetNo == 0 ||
-			    		streetName.isEmpty() || city.isEmpty() || province.isEmpty() || pin.isEmpty() ||
-			    		country.isEmpty() || phNo == 0 || email.isEmpty()) {
-			    	log.logIt(Level.INFO,"Incomplete Record Hence Skipping it 1");
-			    	incompleteRecords++;
-			    	continue;
-			    } 
-			    
-			    pw.write(date+","+firstName+","+lastName+","+streetNo+","+streetName+","+city+
-			    		","+province+","+pin+","+country+","+phNo+","+email+"\n"); 
-			    fineRecords++; 
-			    
+				String lastName = results.getString("Last Name");
+				/*Expensive operations that increase the process time 
+				 * Checking to see if there is any comma in between my data which was previously enclosed in ""
+				 */
+				Integer streetNo = results.getInt("Street Number");
+				String streetName = results.getString("Street").indexOf(",") >= 0 ? "\""+results.getString("Street")+"\"" : results.getString("Street");
+				String city = results.getString("City").indexOf(",") >= 0 ? "\""+results.getString("City")+"\"" : results.getString("City");
+				String province = results.getString("Province").indexOf(",") >= 0 ? "\""+results.getString("Province")+"\"" : results.getString("Province");
+				String pin = results.getString("Postal Code");
+				String country = results.getString("Country");
+				Integer phNo = results.getInt("Phone Number");
+				String email = results.getString("email Address");
+
+				//this region to be commented out in case this is just to check if the csv is complete or not  
+				if(firstName.isEmpty() || lastName.isEmpty() || streetNo == 0 ||
+						streetName.isEmpty() || city.isEmpty() || province.isEmpty() || pin.isEmpty() ||
+						country.isEmpty() || phNo == 0 || email.isEmpty()) {
+					//log.logIt(Level.INFO,"Incomplete Record Hence Skipping it 1");
+					incompleteRecords++;
+					continue;
+				} 
+
+				pw.write(date+","+firstName+","+lastName+","+streetNo+","+streetName+","+city+
+						","+province+","+pin+","+country+","+phNo+","+email+"\n"); 
+				fineRecords++; 
+
 			}
-			
+
 			// Clean up
 			conn.close();
 		} catch (SQLException e) {
@@ -101,29 +100,29 @@ public class DirWalker2 {
 			log.logIt(Level.WARNING,e.getMessage());
 			e.printStackTrace();
 		} 
-		
+
 		finally {
 			try {
-			if(fr != null) fr.close();
-			if(pw != null) pw.close();
+				if(fr != null) fr.close();
+				if(pw != null) pw.close();
 			} catch (Exception e) {
 				log.logIt(Level.SEVERE,e.getMessage());
 			}
 		}
 	}
-	
+
 	public void walk(String path, String outputFile) {
 		File root = new File(path);
 		File[] files = root.listFiles();
-		
+
 		if(files.length == 0) return;
-		
+
 		for(File file : files) {
 			String fileName = file.getAbsolutePath();
 			if(file.isDirectory()) walk(fileName, outputFile);
 			else {
 				//fetching the dates using the folder structure
-				 String folder = fileName.substring(0,fileName.lastIndexOf(pathSeperator));
+				String folder = fileName.substring(0,fileName.lastIndexOf(pathSeperator));
 				String day = folder.substring(folder.lastIndexOf(pathSeperator)+1);
 				//System.out.println(day);
 				String month = folder.substring(0,folder.lastIndexOf(pathSeperator));
@@ -137,7 +136,7 @@ public class DirWalker2 {
 			}
 		}
 	}
-	
+
 	public int getValidRecords() {
 		return fineRecords;
 	}
@@ -145,10 +144,10 @@ public class DirWalker2 {
 	public int getInvalidRecords() {
 		return incompleteRecords;
 	}
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		String basePath = System.getProperty("user.dir");
 		final long startTime = System.currentTimeMillis();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd HHmmss");
@@ -159,7 +158,7 @@ public class DirWalker2 {
 		File output = new File(outputDir);
 		File outputFile = new File(outputDir+"/output"+now+".csv");
 		DirWalker2 obj = new DirWalker2();
-		
+
 		if (! output.exists()) {
 			output.mkdirs(); 
 		}
@@ -175,16 +174,16 @@ public class DirWalker2 {
 				obj.log.logIt(Level.SEVERE,e.getMessage());
 			} 
 		}
-		
-		
-		
+
+
+
 		obj.walk(basePath+"/Sample Data",outputFile.getAbsolutePath());
 		final long endTime = System.currentTimeMillis();
 		Long exeTime = endTime-startTime;
 		validRecords = obj.getValidRecords();
 		invalidRecords = obj.getInvalidRecords();
 		obj.log.logIt(Level.INFO,"Total Execution time in milliseconds is : "+exeTime.toString()+","+validRecords+","+invalidRecords);
-		
+
 	}
 
 }

@@ -34,7 +34,7 @@ public class DirWalker {
 			log.logIt(Level.INFO,"Not a .csv file hence skipping it !!");
 			return;
 		}
-		
+
 		try {
 			fr = new FileReader(filePath);
 			Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(fr);
@@ -43,74 +43,74 @@ public class DirWalker {
 				count++;
 				if (count == 1) continue;
 				try {
-			    String firstName = record.get(0);
-			    String lastName = record.get(1);
-			    String streetNo = record.get(2) ;
-			    /*Expensive operations that increase the process time 
-			     * Checking to see if there is any comma in between my data which was previously enclosed in ""
-			     */
-			    String streetName = record.get(3).indexOf(",") >= 0 ? "\""+record.get(3)+"\"" : record.get(3);
-			    String city = record.get(4).indexOf(",") >= 0 ? "\""+record.get(4)+"\"" : record.get(4);
-			    String province = record.get(5).indexOf(",") >= 0 ? "\""+record.get(5)+"\"" : record.get(5);
-			    String pin = record.get(6);
-			    String country = record.get(7);
-			    String phNo = record.get(8);
-			    String email = record.get(9);
+					String firstName = record.get(0);
+					String lastName = record.get(1);
+					String streetNo = record.get(2) ;
+					/*Expensive operations that increase the process time 
+					 * Checking to see if there is any comma in between my data which was previously enclosed in ""
+					 */
+					String streetName = record.get(3).indexOf(",") >= 0 ? "\""+record.get(3)+"\"" : record.get(3);
+					String city = record.get(4).indexOf(",") >= 0 ? "\""+record.get(4)+"\"" : record.get(4);
+					String province = record.get(5).indexOf(",") >= 0 ? "\""+record.get(5)+"\"" : record.get(5);
+					String pin = record.get(6);
+					String country = record.get(7);
+					String phNo = record.get(8);
+					String email = record.get(9);
 
-			    //TODO : see if this required or this is redundant, checking for the pattern
-			    if(Pattern.matches("[a-zA-Z]+", streetNo) == true || Pattern.matches("[a-zA-Z]+", phNo) == true) {
-			    	log.logIt(Level.INFO,"Record with improper fields");
-			    	incompleteRecords++;
-			    	continue;
-			    }
-			  
-			    
-			    //this region to be commented out in case this is just to check if the csv is complete or not 
-			    if(firstName.isEmpty() || lastName.isEmpty() || streetNo.isEmpty() ||
-			    		streetName.isEmpty() || city.isEmpty() || province.isEmpty() || pin.isEmpty() ||
-			    		country.isEmpty() || phNo.isEmpty() || email.isEmpty()) {
-			    	log.logIt(Level.INFO,"Incomplete Record Hence Skipping it 1");
-			    	incompleteRecords++;
-			    	continue;
-			    } 
-			    
-			    
-			    pw.write(date+","+firstName+","+lastName+","+streetNo+","+streetName+","+city+
-			    		","+province+","+pin+","+country+","+phNo+","+email+"\n");
-			    fineRecords++;
+					//TODO : see if this required or this is redundant, checking for the pattern
+					if(Pattern.matches("[a-zA-Z]+", streetNo) == true || Pattern.matches("[a-zA-Z]+", phNo) == true) {
+						log.logIt(Level.INFO,"Record with improper fields");
+						incompleteRecords++;
+						continue;
+					}
+
+
+					//this region to be commented out in case this is just to check if the csv is complete or not 
+					if(firstName.isEmpty() || lastName.isEmpty() || streetNo.isEmpty() ||
+							streetName.isEmpty() || city.isEmpty() || province.isEmpty() || pin.isEmpty() ||
+							country.isEmpty() || phNo.isEmpty() || email.isEmpty()) {
+						//log.logIt(Level.INFO,"Incomplete Record Hence Skipping it 1");
+						incompleteRecords++;
+						continue;
+					} 
+
+
+					pw.write(date+","+firstName+","+lastName+","+streetNo+","+streetName+","+city+
+							","+province+","+pin+","+country+","+phNo+","+email+"\n");
+					fineRecords++;
 				} catch (IndexOutOfBoundsException e) {
 					incompleteRecords++;
-					log.logIt(Level.WARNING,"The record dosen't have all the data hence skipping it"+e.getMessage());
+					//log.logIt(Level.WARNING,"The record dosen't have all the data hence skipping it"+e.getMessage());
 				}
-				
+
 			}
-			
+
 		} catch (IOException e) {
 			log.logIt(Level.WARNING,e.getMessage());			
 		} 
-		
+
 		finally {
 			try {
-			if(fr != null) fr.close();
-			if(pw != null) pw.close();
+				if(fr != null) fr.close();
+				if(pw != null) pw.close();
 			} catch (Exception e) {
 				log.logIt(Level.SEVERE,e.getMessage());
 			}
 		}
 	}
-	
+
 	public void walk(String path, String outputFile) {
 		File root = new File(path);
 		File[] files = root.listFiles();
-		
+
 		if(files.length == 0) return;
-		
+
 		for(File file : files) {
 			String fileName = file.getAbsolutePath();
 			if(file.isDirectory()) walk(fileName, outputFile);
 			else {
 				//fetching the dates using the folder structure
-				 String folder = fileName.substring(0,fileName.lastIndexOf(pathSeperator));
+				String folder = fileName.substring(0,fileName.lastIndexOf(pathSeperator));
 				String day = folder.substring(folder.lastIndexOf(pathSeperator)+1);
 				//System.out.println(day);
 				String month = folder.substring(0,folder.lastIndexOf(pathSeperator));
@@ -124,7 +124,7 @@ public class DirWalker {
 			}
 		}
 	}
-	
+
 	public int getValidRecords() {
 		return fineRecords;
 	}
@@ -132,10 +132,10 @@ public class DirWalker {
 	public int getInvalidRecords() {
 		return incompleteRecords;
 	}
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		String basePath = System.getProperty("user.dir");
 		final long startTime = System.currentTimeMillis();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd HHmmss");
@@ -146,7 +146,7 @@ public class DirWalker {
 		File output = new File(outputDir);
 		File outputFile = new File(outputDir+"/output"+now+".csv");
 		DirWalker obj = new DirWalker();
-		
+
 		if (! output.exists()) {
 			output.mkdirs(); 
 		}
@@ -162,16 +162,16 @@ public class DirWalker {
 				obj.log.logIt(Level.WARNING,e.getMessage());
 			} 
 		}
-		
-		
-		
+
+
+
 		obj.walk(basePath+"/Sample Data",outputFile.getAbsolutePath());
 		final long endTime = System.currentTimeMillis();
 		Long exeTime = endTime-startTime;
 		validRecords = obj.getValidRecords();
 		invalidRecords = obj.getInvalidRecords();
-		obj.log.logIt(Level.INFO,"Total Execution time in milliseconds is : "+exeTime.toString()+","+validRecords+","+invalidRecords);
-		
+		obj.log.logIt(Level.INFO,"Total Execution time in milliseconds is : "+exeTime.toString()+",Valid Records :"+validRecords+", Invalid Records:"+invalidRecords);
+
 	}
 
 }
