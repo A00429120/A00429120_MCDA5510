@@ -16,6 +16,7 @@ public class SimpleLogging {
 	static final String outputDir = basePath+"/Output";
 	FileHandler fh; 
 
+	
 	public void logIt(Level level,String logMessage) {
 
 		final Logger logging = Logger.getLogger(SimpleLogging.class.getName()); 

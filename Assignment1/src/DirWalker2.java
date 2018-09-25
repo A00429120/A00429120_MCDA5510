@@ -154,7 +154,7 @@ public class DirWalker2 {
 		LocalDateTime time = LocalDateTime.now();
 		String now = dtf.format(time);
 		int validRecords, invalidRecords;
-		String outputDir = basePath+"/Output";
+		String outputDir = basePath+"/../Output";
 		File output = new File(outputDir);
 		File outputFile = new File(outputDir+"/output"+now+".csv");
 		DirWalker2 obj = new DirWalker2();
