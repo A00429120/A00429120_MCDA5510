@@ -1,0 +1,100 @@
+Oct 10, 2018 11:08:28 AM SimpleLogging logIt
+SEVERE: Public Key Retrieval is not allowed
+Oct 10, 2018 11:08:28 AM SimpleLogging logIt
+SEVERE: null
+Oct 10, 2018 11:12:15 AM SimpleLogging logIt
+SEVERE: TransactionPublic Key Retrieval is not allowed
+Oct 10, 2018 11:12:15 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:13:39 AM SimpleLogging logIt
+SEVERE: Transaction Public Key Retrieval is not allowed
+Oct 10, 2018 11:13:39 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:14:08 AM SimpleLogging logIt
+SEVERE: Transaction Public Key Retrieval is not allowed
+Oct 10, 2018 11:14:08 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:14:32 AM SimpleLogging logIt
+SEVERE: Transaction1 Public Key Retrieval is not allowed
+Oct 10, 2018 11:14:32 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:15:59 AM SimpleLogging logIt
+SEVERE: Transaction1 Public Key Retrieval is not allowed
+Oct 10, 2018 11:15:59 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:16:32 AM SimpleLogging logIt
+SEVERE: main null
+Oct 10, 2018 11:32:09 AM SimpleLogging logIt
+SEVERE: updateTransactionYou have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id = 12' at line 1
+Oct 10, 2018 11:32:09 AM SimpleLogging logIt
+SEVERE: main You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id = 12' at line 1
+Oct 12, 2018 1:33:49 AM SimpleLogging logIt
+SEVERE: insertTransaction No operations allowed after connection closed.
+Oct 12, 2018 1:36:24 AM SimpleLogging logIt
+SEVERE: insertTransaction No operations allowed after connection closed.
+Oct 12, 2018 1:37:59 AM SimpleLogging logIt
+SEVERE: insertTransaction Duplicate entry '11' for key 'PRIMARY'
+Oct 12, 2018 12:26:31 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 12:26:52 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 12:41:38 PM SimpleLogging logIt
+SEVERE: getTransaction : Before start of result set
+Oct 12, 2018 12:41:38 PM SimpleLogging logIt
+SEVERE: main Before start of result set
+Oct 12, 2018 12:43:25 PM SimpleLogging logIt
+SEVERE: getTransaction : Before start of result set
+Oct 12, 2018 12:43:25 PM SimpleLogging logIt
+SEVERE: main Before start of result set
+Oct 12, 2018 1:00:05 PM SimpleLogging logIt
+SEVERE: getTransaction : Before start of result set
+Oct 12, 2018 1:00:05 PM SimpleLogging logIt
+SEVERE: main Before start of result set
+Oct 12, 2018 3:01:23 PM SimpleLogging logIt
+SEVERE: insertTransaction Duplicate entry '15' for key 'PRIMARY'
+Oct 12, 2018 3:01:23 PM SimpleLogging logIt
+SEVERE: main Duplicate entry '15' for key 'PRIMARY'
+Oct 12, 2018 3:27:11 PM SimpleLogging logIt
+SEVERE: main No line found
+Oct 12, 2018 3:33:00 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 3:40:30 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 3:44:32 PM SimpleLogging logIt
+SEVERE: insertTransaction Duplicate entry '13' for key 'PRIMARY'
+Oct 12, 2018 3:44:32 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 4:04:44 PM SimpleLogging logIt
+SEVERE: insertTransaction Duplicate entry '13' for key 'PRIMARY'
+Oct 12, 2018 4:04:44 PM SimpleLogging logIt
+SEVERE: main No line found
+Oct 12, 2018 4:06:38 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 4:13:50 PM SimpleLogging logIt
+SEVERE: main No line found
+Oct 12, 2018 4:15:17 PM SimpleLogging logIt
+SEVERE: main No line found
+Oct 12, 2018 4:16:04 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 4:39:21 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 4:41:27 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 4:58:19 PM SimpleLogging logIt
+SEVERE: main null
+Oct 12, 2018 5:00:26 PM SimpleLogging logIt
+SEVERE: main Stream closed
+Oct 12, 2018 5:07:08 PM SimpleLogging logIt
+SEVERE: main Stream closed
+Oct 12, 2018 5:42:22 PM SimpleLogging logIt
+SEVERE: removeTransaction: please try Inserting Transaction for the ID:13
+Oct 13, 2018 11:19:30 AM SimpleLogging logIt
+SEVERE: removeTransaction: please try Inserting Transaction for the ID:17
+Oct 13, 2018 11:19:51 AM SimpleLogging logIt
+SEVERE: removeTransaction: please try Inserting Transaction for the ID:17
+Oct 13, 2018 11:20:10 AM SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:17
+Oct 13, 2018 11:21:23 AM SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:17
+Oct 13, 2018 11:21:41 AM SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:17
