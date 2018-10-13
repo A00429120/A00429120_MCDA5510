@@ -25,7 +25,6 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 //Does all the SQL Related work
 public class MySQLAccess {
 
@@ -34,7 +33,7 @@ public class MySQLAccess {
 	private static ResultSet resultSet = null;
 	private static String cardType = null;
 
-	//Initializes the connection to the database and return the Connection option
+	// Initializes the connection to the database and return the Connection option
 	public Connection setupConnection() throws Exception {
 
 		Connection connect = null;
@@ -56,7 +55,7 @@ public class MySQLAccess {
 		return connect;
 	}
 
-	//This is to validate the different fields before entering it into the database
+	// This is to validate the different fields before entering it into the database
 	public String validate(String val, String type) {
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
 		type = type == null ? "empty" : type;
@@ -66,14 +65,14 @@ public class MySQLAccess {
 				val = sc.readLine();
 				validate(val, type);
 			}
-			
-			//Checks if there are invalid character like "; : ! @ # $ % ^ * + ? < >"
+
+			// Checks if there are invalid character like "; : ! @ # $ % ^ * + ? < >"
 			Pattern p = Pattern.compile("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>]*");
 			Matcher m = p.matcher(val);
 			boolean b = m.matches();
 			if (b) {
 				if (type.equals("card")) {
-					//validation for the CardNumber Field
+					// validation for the CardNumber Field
 					if (val.matches("^5[1-5]\\d{14}$")) {
 						cardType = "MasterCard";
 						return val;
@@ -91,7 +90,7 @@ public class MySQLAccess {
 						validate(val, type);
 					}
 				} else if (type.equals("exp")) {
-					//validation for the ExpiryDate Field
+					// validation for the ExpiryDate Field
 					p = Pattern.compile("^(0[1-9]|1[0-2])/20(1[6-9]|2[0-9]|3[0-1])$");
 					m = p.matcher(val);
 					b = m.matches();
@@ -104,7 +103,7 @@ public class MySQLAccess {
 						validate(val, type);
 					}
 				} else if (type.equals("digit")) {
-					//validation for the UnitPrice and Quantity Fields
+					// validation for the UnitPrice and Quantity Fields
 					p = Pattern.compile("^\\d*\\.{0,1}\\d{0,2}$");
 					m = p.matcher(val);
 					b = m.matches();
@@ -131,8 +130,11 @@ public class MySQLAccess {
 		return val;
 	}
 
-	/*This method is used to fetch the values from the User based on the ID sent 
-	 * and then insets the values into the data base after validating them via validate function */
+	/*
+	 * This method is used to fetch the values from the User based on the ID sent
+	 * and then insets the values into the data base after validating them via
+	 * validate function
+	 */
 	public Boolean createTransaction(Transaction trans, Connection connect) {
 		int success;
 		Scanner scn = new Scanner(System.in);
@@ -151,14 +153,15 @@ public class MySQLAccess {
 					values.add(validate(val, "card"));
 				else if (field.equals("ExpDate"))
 					values.add(validate(val, "exp"));
+				else if (field.equals("NameOnCard"))
+					values.add(validate(val, null));
 				else
 					values.add(validate(val, "digit"));
-
 			} else {
 				values.add(val);
 			}
 		}
-		//setting the values to the transaction object
+		// setting the values to the transaction object
 		trans.setCardNumber(values.get(0));
 		trans.setNameOnCard(values.get(1));
 		trans.setUnitPrice(Double.parseDouble(values.get(2)));
@@ -167,9 +170,9 @@ public class MySQLAccess {
 		trans.setExpDate(values.get(4));
 		trans.setCreatedBy(System.getProperty("user.name"));
 		trans.setCardType(cardType);
-		
+
 		try {
-			//Inserting values into the Database
+			// Inserting values into the Database
 			preparedStatement = connect
 					.prepareStatement("insert into transactions.transaction values (?,?,?,?,?,?,?,SYSDATE(),?,?)");
 			preparedStatement.setInt(1, trans.getId());
@@ -196,10 +199,12 @@ public class MySQLAccess {
 		return true;
 	}
 
-	/*This method is used to either print a single transaction or to initialize a 
-	 * transaction to use it for update or insert */
+	/*
+	 * This method is used to either print a single transaction or to initialize a
+	 * transaction to use it for update or insert
+	 */
 	public Transaction getTransaction(int transId, Connection connect, boolean print) throws SQLException {
-		//initializing the Transaction object
+		// initializing the Transaction object
 		Transaction transObj = new Transaction();
 		transObj.setId(transId);
 		// Result set get the result of the SQL query
@@ -221,7 +226,7 @@ public class MySQLAccess {
 					transObj.setCreatedOn(resultSet.getString("CreatedOn"));
 					transObj.setCreatedBy(resultSet.getString("CreatedBy"));
 					count++;
-					//printing the values
+					// printing the values
 					System.out.println(transObj.toString());
 				}
 
@@ -243,13 +248,16 @@ public class MySQLAccess {
 
 	}
 
-	/* This method is used to update the values after initializing the ID to be updated 
-	 * the user gets to select the filed to be updated and the update is made into the database after validation*/
+	/*
+	 * This method is used to update the values after initializing the ID to be
+	 * updated the user gets to select the filed to be updated and the update is
+	 * made into the database after validation
+	 */
 	public Boolean updateTransaction(Transaction trans, Connection connect) {
 		String what, toWhat, choice;
 		int success;
 		what = "";
-		//displaying different fields that can be updated
+		// displaying different fields that can be updated
 		System.out.println("Enter the coresponding number to update that field:\n 1->Name on Card\n "
 				+ "2->Card Number\n 3->Exp Date\n 4->Unit Price\n 5->Qty\n 6->Created On\n " + "7->Exit\\Cancel\n");
 		Scanner scn = new Scanner(System.in);
@@ -311,7 +319,7 @@ public class MySQLAccess {
 			updateTransaction(trans, connect);
 		}
 		try {
-			//Updating the values in the database
+			// Updating the values in the database
 			preparedStatement = connect
 					.prepareStatement("update transactions.transaction set " + what + " where id = ?");
 			preparedStatement.setInt(1, trans.getId());
@@ -332,7 +340,7 @@ public class MySQLAccess {
 		return true;
 	}
 
-	//This method deleted an entry from the database based on the ID given
+	// This method deleted an entry from the database based on the ID given
 	public Boolean removeTransaction(int transId, Connection connect) {
 		int success;
 		try {
@@ -353,9 +361,11 @@ public class MySQLAccess {
 		}
 		return true;
 	}
-	
-	/*used the return a collection of all the transaction object based on the 
-	 * transactions available in the database */
+
+	/*
+	 * used the return a collection of all the transaction object based on the
+	 * transactions available in the database
+	 */
 	public Collection<Transaction> getAllTransactions(Connection connection) {
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -408,7 +418,6 @@ public class MySQLAccess {
 			trxn.setCardType(resultSet.getString("CardType"));
 
 			results.add(trxn);
-
 
 		}
 
