@@ -43,9 +43,9 @@ public class MySQLAccess {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// Setup the connection with the DB
 
-			connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/v_govindan?" + "user=v_govindan&password=A00429120" + "&useSSL=false"
-							+ "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+			connect = DriverManager.getConnection("jdbc:mysql://dev.cs.smu.ca:3306/v_govindan?"
+					+ "user=v_govindan&password=A00429120" + "&useSSL=false"
+					+ "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
 		} catch (Exception e) {
 			throw e;
