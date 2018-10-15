@@ -44,7 +44,7 @@ public class MySQLAccess {
 			// Setup the connection with the DB
 
 			connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/transactions?" + "user=root&password=IluvSQL@ni8" + "&useSSL=false"
+					"jdbc:mysql://localhost:3306/v_govindan?" + "user=v_govindan&password=A00429120" + "&useSSL=false"
 							+ "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
 		} catch (Exception e) {
@@ -174,7 +174,7 @@ public class MySQLAccess {
 		try {
 			// Inserting values into the Database
 			preparedStatement = connect
-					.prepareStatement("insert into transactions.transaction values (?,?,?,?,?,?,?,SYSDATE(),?,?)");
+					.prepareStatement("insert into v_govindan.transaction values (?,?,?,?,?,?,?,SYSDATE(),?,?)");
 			preparedStatement.setInt(1, trans.getId());
 			preparedStatement.setString(2, trans.getCardNumber());
 			preparedStatement.setString(3, trans.getNameOnCard());
@@ -212,7 +212,7 @@ public class MySQLAccess {
 
 			int count = 0;
 			// Statements allow to issue SQL queries to the database
-			preparedStatement = connect.prepareStatement("select * from transactions.transaction where id = ?");
+			preparedStatement = connect.prepareStatement("select * from v_govindan.transaction where id = ?");
 			preparedStatement.setInt(1, transId);
 			resultSet = preparedStatement.executeQuery();
 
@@ -320,8 +320,7 @@ public class MySQLAccess {
 		}
 		try {
 			// Updating the values in the database
-			preparedStatement = connect
-					.prepareStatement("update transactions.transaction set " + what + " where id = ?");
+			preparedStatement = connect.prepareStatement("update v_govindan.transaction set " + what + " where id = ?");
 			preparedStatement.setInt(1, trans.getId());
 			success = preparedStatement.executeUpdate();
 			if (success == 0) {
@@ -344,7 +343,7 @@ public class MySQLAccess {
 	public Boolean removeTransaction(int transId, Connection connect) {
 		int success;
 		try {
-			preparedStatement = connect.prepareStatement("delete from transactions.transaction where id = ?");
+			preparedStatement = connect.prepareStatement("delete from v_govindan.transaction where id = ?");
 			preparedStatement.setInt(1, transId);
 			success = preparedStatement.executeUpdate();
 			if (success <= 0) {
@@ -374,7 +373,7 @@ public class MySQLAccess {
 		try {
 			// Statements allow to issue SQL queries to the database
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select * from transactions.transaction");
+			resultSet = statement.executeQuery("select * from v_govindan.transaction");
 			results = createTrxns(resultSet);
 
 			if (resultSet != null) {

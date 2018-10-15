@@ -8,7 +8,7 @@ import java.util.logging.SimpleFormatter;
 public class SimpleLogging {
 
 	static final String basePath = System.getProperty("user.dir");
-	static final String outputDir = basePath + "/log";
+	static final String outputDir = basePath + "/../log";
 	static final File opDir = new File(outputDir);
 	FileHandler fh;
 
