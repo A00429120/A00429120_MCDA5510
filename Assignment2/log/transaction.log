@@ -1,2 +1,8 @@
 Oct 13, 2018 12:02:25 PM SimpleLogging logIt
 SEVERE: removeTransaction: please try Inserting Transaction for the ID:99
+Oct 14, 2018 11:07:16 PM SimpleLogging logIt
+SEVERE: insertTransaction Duplicate entry '46' for key 'PRIMARY'
+Oct 14, 2018 11:07:32 PM SimpleLogging logIt
+SEVERE: removeTransaction: please try Inserting Transaction for the ID:77
+Oct 14, 2018 11:11:20 PM SimpleLogging logIt
+SEVERE: removeTransaction: please try Inserting Transaction for the ID:13

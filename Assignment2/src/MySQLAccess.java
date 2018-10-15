@@ -76,16 +76,16 @@ public class MySQLAccess {
 					if (val.matches("^5[1-5]\\d{14}$")) {
 						cardType = "MasterCard";
 						return val;
-					} else if (val.matches("^4\\d{14}$")) {
+					} else if (val.matches("^4\\d{15}$")) {
 						cardType = "Visa";
 						return val;
-					} else if (val.matches("^3(4|7)\\\\d{14}$")) {
+					} else if (val.matches("^3(4|7)\\\\d{13}$")) {
 						cardType = "AmericanExpress";
 						return val;
 					} else {
 						System.out.println(
-								"The Card should contain only digits and should be of the size 15 and start with 4 "
-										+ "or size 16 and star with 51-55 or 34 or 37 \nplease re-enter :");
+								"The Card should contain only digits and should be of the size 16 and start with 4 "
+										+ "or 51-55 or size 15 and start with 34 or 37 \nplease re-enter :");
 						val = sc.readLine();
 						validate(val, type);
 					}
@@ -209,34 +209,34 @@ public class MySQLAccess {
 		transObj.setId(transId);
 		// Result set get the result of the SQL query
 		try {
-			if (print) {
-				int count = 0;
-				// Statements allow to issue SQL queries to the database
-				preparedStatement = connect.prepareStatement("select * from transactions.transaction where id = ?");
-				preparedStatement.setInt(1, transId);
-				resultSet = preparedStatement.executeQuery();
 
-				while (resultSet.next()) {
-					transObj.setNameOnCard(resultSet.getString("NameOnCard"));
-					transObj.setCardNumber(resultSet.getString("CardNumber"));
-					transObj.setExpDate(resultSet.getString("ExpDate"));
-					transObj.setUnitPrice(resultSet.getDouble("UnitPrice"));
-					transObj.setQuantity(resultSet.getInt("Quantity"));
-					transObj.setTotalPrice(resultSet.getDouble("TotalPrice"));
-					transObj.setCreatedOn(resultSet.getString("CreatedOn"));
-					transObj.setCreatedBy(resultSet.getString("CreatedBy"));
-					count++;
+			int count = 0;
+			// Statements allow to issue SQL queries to the database
+			preparedStatement = connect.prepareStatement("select * from transactions.transaction where id = ?");
+			preparedStatement.setInt(1, transId);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				transObj.setNameOnCard(resultSet.getString("NameOnCard"));
+				transObj.setCardNumber(resultSet.getString("CardNumber"));
+				transObj.setExpDate(resultSet.getString("ExpDate"));
+				transObj.setUnitPrice(resultSet.getDouble("UnitPrice"));
+				transObj.setQuantity(resultSet.getInt("Quantity"));
+				transObj.setTotalPrice(resultSet.getDouble("TotalPrice"));
+				transObj.setCreatedOn(resultSet.getString("CreatedOn"));
+				transObj.setCreatedBy(resultSet.getString("CreatedBy"));
+				count++;
+				if (print) {
 					// printing the values
 					System.out.println(transObj.toString());
 				}
-
-				if (resultSet != null) {
-					resultSet.close();
-				}
-				if (count == 0)
-					System.out.println("No Transaction found for the ID:" + transId);
-				return null;
 			}
+
+			if (resultSet != null) {
+				resultSet.close();
+			}
+			if (count == 0 && print)
+				System.out.println("No Transaction found for the ID:" + transId);
 		} catch (SQLException e) {
 			log.logIt(Level.SEVERE, "getTransaction : " + e.getMessage());
 			throw e;
