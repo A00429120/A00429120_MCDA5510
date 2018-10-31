@@ -55,6 +55,10 @@ namespace MSCDA5510
             fileStream.Write("First Name");
             fileStream.Write(COMMA);
             fileStream.Write("Last Name");
+            fileStream.Write(COMMA);
+            fileStream.Write("Street No.");
+            fileStream.Write(COMMA);
+            fileStream.Write("Street Name");
             fileStream.WriteLine();
 
             for (int i = 0; i < 20; i++)
@@ -62,6 +66,10 @@ namespace MSCDA5510
                 fileStream.Write(GenerateFirstName());
                 fileStream.Write(COMMA);
                 fileStream.Write(GenerateLastName());
+                fileStream.Write(COMMA);
+                fileStream.Write(GenerateStreetNo());
+                fileStream.Write(COMMA);
+                fileStream.Write(GenerateStreetName());
                 fileStream.WriteLine();
             }
             fileStream.Close();
@@ -77,6 +85,18 @@ namespace MSCDA5510
         {
             String lastNames = @"C:\Users\vinay\Documents\GitHub\A00429120_MCDA5510\ConsoleApp1\ConsoleApp1\lastNames.txt";
             return ReturnRandomLine(lastNames);
+        }
+
+        public string GenerateStreetNo()
+        {
+            String streetNo = @"C:\Users\vinay\Documents\GitHub\A00429120_MCDA5510\ConsoleApp1\ConsoleApp1\streetNo.txt";
+            return ReturnRandomLine(streetNo);
+        }
+
+        public string GenerateStreetName()
+        {
+            String streetNames = @"C:\Users\vinay\Documents\GitHub\A00429120_MCDA5510\ConsoleApp1\ConsoleApp1\streetName.txt";
+            return ReturnRandomLine(streetNames);
         }
 
         // Gets a line from a file
