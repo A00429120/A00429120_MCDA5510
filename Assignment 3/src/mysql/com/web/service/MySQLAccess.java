@@ -123,8 +123,8 @@ public class MySQLAccess {
 			preparedStatement = connect
 					.prepareStatement("insert into v_govindan.transaction values (?,?,?,?,?,?,?,SYSDATE(),?,?)");
 			preparedStatement.setInt(1, Integer.parseInt(trans.getId()));
-			preparedStatement.setString(2, trans.getCardNumber());
-			preparedStatement.setString(3, trans.getNameOnCard());
+			preparedStatement.setString(3, trans.getCardNumber());
+			preparedStatement.setString(2, trans.getNameOnCard());
 			preparedStatement.setDouble(4, Double.parseDouble(trans.getUnitPrice()));
 			preparedStatement.setInt(5, Integer.parseInt(trans.getQuantity()));
 			preparedStatement.setDouble(6, trans.getTotalPrice());
