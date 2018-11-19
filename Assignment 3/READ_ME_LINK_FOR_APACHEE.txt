@@ -1,0 +1,1 @@
+http://dev.cs.smu.ca:8055/Assignment_3Client/sampleAssignment3Proxy/TestClient.jsp?endpoint=http://dev.cs.smu.ca:8055/Assignment_3/services/Assignment3
