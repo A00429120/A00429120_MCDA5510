@@ -1,0 +1,26 @@
+Nov 18, 2018 11:37:15 PM mysql.com.web.service.SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:466
+Nov 18, 2018 11:37:15 PM mysql.com.web.service.SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:466
+Nov 18, 2018 11:38:57 PM mysql.com.web.service.SimpleLogging logIt
+SEVERE: updateTransaction: please try Inserting Transaction for the ID:466
+Nov 19, 2018 12:13:58 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dada"
+Nov 19, 2018 12:14:53 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dada"
+Nov 19, 2018 12:15:11 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dadab"
+Nov 19, 2018 12:16:44 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dadab"
+Nov 19, 2018 12:16:56 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dadab"
+Nov 19, 2018 12:18:11 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "dadab"
+Nov 19, 2018 12:18:38 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "fsa"
+Nov 19, 2018 12:18:57 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "fsa"
+Nov 19, 2018 12:20:36 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "aaa"
+Nov 19, 2018 12:20:44 AM mysql.com.web.service.SimpleLogging logIt
+SEVERE: create For input string: "aaas"

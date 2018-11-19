@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from Assignment3Service WSDL service -->
+
+  <service name="Assignment3" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.web.com.assignment3"/>
+      <parameter name="wsdlServiceElement" value="Assignment3Service"/>
+      <parameter name="schemaQualified" value="http://service.web.com.assignment3"/>
+      <parameter name="wsdlServicePort" value="Assignment3"/>
+      <parameter name="className" value="assignment3.com.web.service.Assignment3"/>
+      <parameter name="wsdlPortType" value="Assignment3"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.web.com.assignment3" xmlns:retNS="http://service.web.com.assignment3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="remove" qname="operNS:remove" returnQName="retNS:removeReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.com.assignment3" xmlns:retNS="http://service.web.com.assignment3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="get" qname="operNS:get" returnQName="retNS:getReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.com.assignment3" xmlns:retNS="http://service.web.com.assignment3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="update" qname="operNS:update" returnQName="retNS:updateReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:choice" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.com.assignment3" xmlns:retNS="http://service.web.com.assignment3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="create" qname="operNS:create" returnQName="retNS:createReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cardNumber" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:expDate" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nameOnCard" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:unitPrice" type="tns:string"/>
+        <parameter xmlns:pns="http://service.web.com.assignment3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.web.com.assignment3" xmlns:retNS="http://service.web.com.assignment3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAll" qname="operNS:getAll" returnQName="retNS:getAllReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="getAll get update create remove"/>
+
+  </service>
+</deployment>
