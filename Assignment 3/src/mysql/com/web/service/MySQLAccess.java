@@ -81,7 +81,7 @@ public class MySQLAccess {
 				}
 
 			} else if (type.equals("Id")) {
-				p = Pattern.compile("^\\d$");
+				p = Pattern.compile("^\\d*$");
 				m = p.matcher(val);
 				b = m.matches();
 				if (b) {
