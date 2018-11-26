@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InClassModelStoreContainer" CdmEntityContainer="InClassEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="InClassModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="addrses1" ColumnName="addrses1" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="postal" ColumnName="postal" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipments">
+      <EntityTypeMapping TypeName="InClassModel.Shipment">
+        <MappingFragment StoreEntitySet="Shipment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Courier" ColumnName="Courier" />
+          <ScalarProperty Name="TrackingNumber" ColumnName="TrackingNumber" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="EstShippedDate" ColumnName="EstShippedDate" />
+          <ScalarProperty Name="DateOrderPlaced" ColumnName="DateOrderPlaced" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
