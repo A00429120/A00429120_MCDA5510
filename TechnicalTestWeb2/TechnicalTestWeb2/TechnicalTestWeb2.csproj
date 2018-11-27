@@ -258,6 +258,7 @@
     <Content Include="Views\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
